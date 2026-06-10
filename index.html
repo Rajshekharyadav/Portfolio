@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Raj Shekhar Yadav is a Full Stack Developer, AI Engineer, and Motion Designer building scalable web apps, AI products, and premium digital experiences."
+    />
+    <meta
+      name="keywords"
+      content="Raj Shekhar Yadav, Full Stack Developer, AI Engineer, Motion Designer, Next.js, AI, Machine Learning, Portfolio"
+    />
+    <meta name="author" content="Raj Shekhar Yadav" />
+    <meta name="theme-color" content="#080808" />
+    <meta property="og:title" content="Raj Shekhar Yadav | Full Stack Developer & AI Engineer" />
+    <meta
+      property="og:description"
+      content="Sleek Netflix-themed portfolio for a Full Stack Developer, AI Engineer, and Motion Designer."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/images/og-preview.svg" />
+    <title>Raj Shekhar Yadav | Full Stack Developer & AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="loader" aria-label="Loading portfolio">
+      <div class="loader__orb"></div>
+      <p>Initializing Experience</p>
+    </div>
+
+    <div class="noise-layer" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true">
+      <span class="cursor-label"></span>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="netflix-wipe" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="site-header__left">
+        <a class="brand" href="#home" aria-label="Raj Shekhar Yadav home">
+          <span>DEVFLIX</span>
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <button class="nav__toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+            <span>Browse</span>
+            <svg class="icon-dropdown" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <div class="nav__links">
+            <a href="#home">Home</a>
+            <a href="#solutions">Solutions</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Episodes (Experience)</a>
+            <a href="#certifications">Reviews (Certificates)</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+
+      <div class="site-header__right">
+        <div class="search-box">
+          <button class="search-btn" aria-label="Search projects or skills">
+            <svg class="icon-search" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"/></svg>
+          </button>
+          <input type="text" id="netflix-search" placeholder="Titles, skills, tags..." aria-label="Search portfolio" />
+        </div>
+        
+        <div class="notifications">
+          <button class="notifications-btn" aria-label="Notifications">
+            <svg class="icon-bell" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+            <span class="notification-badge">3</span>
+          </button>
+          <div class="notifications-dropdown">
+            <div class="notification-item">
+              <span class="notification-dot"></span>
+              <div>
+                <strong>Trending</strong>
+                <span>VGG16 volume detection system internship at Northern Coalfields completed!</span>
+              </div>
+            </div>
+            <div class="notification-item">
+              <span class="notification-dot"></span>
+              <div>
+                <strong>New Release</strong>
+                <span>AI healthcare dashboard 'NextMed' deployed.</span>
+              </div>
+            </div>
+            <div class="notification-item">
+              <span class="notification-dot"></span>
+              <div>
+                <strong>System Update</strong>
+                <span>Toggle between Adult Mode and Kids Mode via profile menu.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-menu">
+          <button class="profile-btn" aria-label="Profiles settings">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Adult profile avatar" class="profile-avatar" />
+          </button>
+          <div class="profile-dropdown">
+            <div class="profile-list">
+              <button class="profile-item active" data-profile="adult">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" alt="Adult avatar" />
+                <span>Adult (Dark Mode)</span>
+              </button>
+              <button class="profile-item" data-profile="kids">
+                <img src="https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&w=80&q=80" alt="Kids avatar" />
+                <span>Kids (Light Mode)</span>
+              </button>
+            </div>
+            <hr />
+            <a href="assets/resume/Raj_Shekhar_Yadav_Resume.pdf" download class="profile-action">Download Resume</a>
+            <a href="#contact" class="profile-action">Start Project</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="billboard section" id="home">
+        <div class="billboard__backdrop" aria-hidden="true">
+          <div class="billboard__slide active" style="--bg-desk: url('../assets/images/hero/1.png'); --bg-mob: url('../assets/images/hero/mobile/1.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/2.png'); --bg-mob: url('../assets/images/hero/mobile/2.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/3.png'); --bg-mob: url('../assets/images/hero/mobile/3.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/4.png'); --bg-mob: url('../assets/images/hero/mobile/4.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/5.png'); --bg-mob: url('../assets/images/hero/mobile/5.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/6.png'); --bg-mob: url('../assets/images/hero/mobile/6.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/7.png'); --bg-mob: url('../assets/images/hero/mobile/7.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/8.png'); --bg-mob: url('../assets/images/hero/mobile/8.png');"></div>
+          <div class="billboard__slide" style="--bg-desk: url('../assets/images/hero/9.png'); --bg-mob: url('../assets/images/hero/mobile/9.png');"></div>
+        </div>
+        <div class="billboard__content reveal">
+          <div class="billboard__badge">
+            <span class="badge-top10">TOP 10</span>
+            <span>#1 Developer on Web Today</span>
+          </div>
+          <h1 class="billboard__title">Raj Shekhar Yadav</h1>
+          <div class="billboard__meta">
+            <span class="meta-match">99% Match</span>
+            <span class="meta-year">2026</span>
+            <span class="meta-rating">U/A 18+</span>
+            <span class="meta-features">Full Stack &bull; AI/ML &bull; Motion UI</span>
+          </div>
+          <p class="billboard__description">
+            Computer Science Engineering student at Chandigarh University building intelligent digital products, advanced full-stack solutions, and high-fidelity web experiences. Proven history in AI research, medical tech portals, and systems automation.
+          </p>
+          <div class="billboard__actions">
+            <a href="#projects" class="btn btn--primary btn--play">
+              <svg class="btn-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              Play Projects
+            </a>
+            <a href="#about" class="btn btn--secondary btn--info">
+              <svg class="btn-icon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              More Info
+            </a>
+          </div>
+        </div>
+        <div class="billboard__rating-tag" aria-hidden="true">
+          <span>U/A 18+</span>
+        </div>
+      </section>
+
+      <section class="section row about" id="about">
+        <h2 class="row__title">About Creator</h2>
+        <div class="about__grid">
+          <article class="glass-panel reveal">
+            <p>
+              I am Raj Shekhar Yadav, a CS Engineering student at Chandigarh University. Combining an engineering mindset with a designer's eye, I specialize in shipping software that bridges the gap between machine intelligence and fluid user interfaces.
+            </p>
+            <p>
+              My expertise spans modern frontend frameworks, scalable backend servers, artificial intelligence architectures, machine learning models, and high-end UI/UX animations.
+            </p>
+            <div class="stats-grid" aria-label="Streaming statistics">
+              <article class="stat-card">
+                <strong data-count="20">0</strong>
+                <span>Projects Shipped</span>
+              </article>
+              <article class="stat-card">
+                <strong data-count="3">0</strong>
+                <span>Certificates Issued</span>
+              </article>
+              <article class="stat-card">
+                <strong data-count="1">0</strong>
+                <span>AI Intern Episode</span>
+              </article>
+            </div>
+          </article>
+          
+          <div class="signal-stack reveal" aria-label="Core categories">
+            <div class="signal-item">
+              <span class="signal-icon">P</span>
+              <div>
+                <h4>Product Design</h4>
+                <p>Ensuring visual excellence and human-centered ergonomics.</p>
+              </div>
+            </div>
+            <div class="signal-item">
+              <span class="signal-icon">A</span>
+              <div>
+                <h4>AI Pipelines</h4>
+                <p>Deploying computer vision and text models directly to production.</p>
+              </div>
+            </div>
+            <div class="signal-item">
+              <span class="signal-icon">M</span>
+              <div>
+                <h4>Motion Aesthetics</h4>
+                <p>Micro-animations, page transitions, and smooth scroll behaviors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section row" id="solutions">
+        <h2 class="row__title">Trending Now: Digital Solutions</h2>
+        <div class="row__wrapper">
+          <button class="row__nav row__nav--left" aria-label="Scroll left" type="button">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="row__grid solutions-grid">
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="react, next.js, node.js, html, css, typescript, full stack, frontend, backend">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80" alt="Full Stack development workstation" />
+                <span class="netflix-card__badge">Popular</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">98% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>Full Stack Development</h3>
+                <p class="card-desc">Sleek client interfaces paired with robust backend servers, standard security, and performant REST APIs.</p>
+                <div class="card-tags">
+                  <span>React</span><span>Next.js</span><span>Node.js</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="ai, ml, python, tensorflow, deep learning, nlp, computer vision, artificial intelligence">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=400&q=80" alt="AI Neural Net visual" />
+                <span class="netflix-card__badge">Trending</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">97% Match</span>
+                  <span class="card-meta__spec">HDR</span>
+                </div>
+                <h3>Artificial Intelligence</h3>
+                <p class="card-desc">Intelligent neural nets, text-parsing NLP bots, and smart classification models deployed to local or cloud hardware.</p>
+                <div class="card-tags">
+                  <span>Python</span><span>TensorFlow</span><span>PyTorch</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="saas, node, deployment, cloud, database, serverless">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="SaaS Dashboard preview" />
+                <span class="netflix-card__badge">High Value</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">95% Match</span>
+                  <span class="card-meta__spec">4K</span>
+                </div>
+                <h3>SaaS Platforms</h3>
+                <p class="card-desc">Converting architectural concepts into scalable software platforms featuring membership billing and clean database syncs.</p>
+                <div class="card-tags">
+                  <span>SaaS</span><span>Stripe</span><span>MongoDB</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="healthcare, nextmed, diagnostic, medical, portal">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=400&q=80" alt="Medical dashboard" />
+                <span class="netflix-card__badge">New Release</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">99% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>Healthcare Portals</h3>
+                <p class="card-desc">Advanced patient tracking hubs, diagnostic portals, automated report parsers, and scheduling tools built for medical systems.</p>
+                <div class="card-tags">
+                  <span>Healthcare</span><span>HIPAA</span><span>Dashboard</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="mobile, app, react native, flutter, swift, cross-platform">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80" alt="Mobile UI layout" />
+                <span class="netflix-card__badge">Responsive</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">93% Match</span>
+                  <span class="card-meta__spec">5.1 Audio</span>
+                </div>
+                <h3>Mobile Applications</h3>
+                <p class="card-desc">Sleek, fluid cross-platform native iOS & Android applications built with optimized responsive UX architectures.</p>
+                <div class="card-tags">
+                  <span>React Native</span><span>Flutter</span><span>Swift</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="custom, enterprise, c++, java, internal software">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=400&q=80" alt="Code lines on monitor" />
+                <span class="netflix-card__badge">Tailored</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">91% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>Custom Systems</h3>
+                <p class="card-desc">Specialized enterprise utilities, algorithm optimizations, automation pipelines, and management software.</p>
+                <div class="card-tags">
+                  <span>C++</span><span>Java</span><span>Algorithms</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="cloud, devops, docker, git, github, ci/cd, deployment">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=400&q=80" alt="Global server grid visual" />
+                <span class="netflix-card__badge">High Value</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">96% Match</span>
+                  <span class="card-meta__spec">HDR</span>
+                </div>
+                <h3>Cloud Infrastructure</h3>
+                <p class="card-desc">Configuring automated build pipelines, hosting container grids, setting up load balancing, and optimizing database clusters.</p>
+                <div class="card-tags">
+                  <span>Docker</span><span>CI/CD</span><span>AWS</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="data, bi, dashboard, sql, analytics, visualization">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Business charts" />
+                <span class="netflix-card__badge">Standard</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">94% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>Data Visualization</h3>
+                <p class="card-desc">Translating vast SQL datasets into clean interactive dashboards, metrics reports, and predictive pipelines.</p>
+                <div class="card-tags">
+                  <span>SQL</span><span>BI Tools</span><span>D3.js</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card solution-card reveal tilt-card" data-tags="ui, ux, figma, design, motion design, css, animation">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1561070791-26c113006238?auto=format&fit=crop&w=400&q=80" alt="Figma workspace visual" />
+                <span class="netflix-card__badge">Artistic</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-meta">
+                  <span class="card-meta__match">98% Match</span>
+                  <span class="card-meta__spec">4K &bull; HDR</span>
+                </div>
+                <h3>UI/UX &amp; Motion Design</h3>
+                <p class="card-desc">Structuring modern user flows, styling premium dark mode layouts in Figma, and implementing fluid CSS animations.</p>
+                <div class="card-tags">
+                  <span>Figma</span><span>CSS Motion</span><span>UX design</span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <button class="row__nav row__nav--right" aria-label="Scroll right" type="button">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section row" id="projects">
+        <h2 class="row__title">Popular on Portfolio: Featured Projects</h2>
+        <div class="row__wrapper">
+          <button class="row__nav row__nav--left" aria-label="Scroll left" type="button">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <div class="row__grid project-grid">
+            <article class="netflix-card project-card reveal tilt-card" data-tags="next.js, typescript, node.js, ai/ml, medical, healthcare, nextmed" data-demo="#" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="NextMed platform screenshot" />
+                <span class="netflix-card__badge">New Release</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play NextMed live demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="NextMed details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">99% Match</span>
+                  <span class="card-meta__spec">4K &bull; HDR</span>
+                </div>
+                <h3>NextMed</h3>
+                <p class="card-desc">AI-powered healthcare platform combining diagnostic checkers, computer-vision skin disease mapping, and automated PDF blood report parsers.</p>
+                <ul class="card-features">
+                  <li>Automated disease predictors &amp; symptoms map</li>
+                  <li>Dermatological scans &amp; blood metrics analytics</li>
+                  <li>Integrated doctor scheduling &amp; clinical logs</li>
+                </ul>
+                <div class="card-tags">
+                  <span>Next.js</span><span>TypeScript</span><span>Node.js</span><span>AI/ML</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card project-card reveal tilt-card" data-tags="wordpress, php, javascript, css, drmichael, medical, portal" data-demo="https://drmichael.online" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=600&q=80" alt="Medical consultation workspace" />
+                <span class="netflix-card__badge">Trending</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play DrMichael live demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="DrMichael details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">98% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>DrMichael.online</h3>
+                <p class="card-desc">Official healthcare consulting portal for appointments, digital profile listings, medical advice archives, and SEO-optimized pages.</p>
+                <ul class="card-features">
+                  <li>Active doctor calendar booking engines</li>
+                  <li>Automated email responses &amp; patient dashboard</li>
+                  <li>Mobile-first fluid grid layout</li>
+                </ul>
+                <div class="card-tags">
+                  <span>WordPress</span><span>PHP</span><span>JavaScript</span><span>CSS</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card project-card reveal tilt-card" data-tags="next.js, ai, node.js, health, data visualization" data-demo="#" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=600&q=80" alt="Blood Analysis Dashboard preview" />
+                <span class="netflix-card__badge">Highly Rated</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play Blood Analyzer live demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="Blood Analyzer details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">96% Match</span>
+                  <span class="card-meta__spec">HDR</span>
+                </div>
+                <h3>Blood Report Analyzer</h3>
+                <p class="card-desc">A deep-learning document parser that analyzes uploaded PDF lab reports, flags abnormal values, and explains metrics simply.</p>
+                <ul class="card-features">
+                  <li>Instant PDF document upload &amp; optical extraction</li>
+                  <li>Clinical classification models for lab scores</li>
+                  <li>Structured diet &amp; physician consult cues</li>
+                </ul>
+                <div class="card-tags">
+                  <span>Next.js</span><span>Node.js</span><span>LLM API</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card project-card reveal tilt-card" data-tags="python, nlp, langchain, chatbot, support" data-demo="#" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80" alt="University campus screenshot" />
+                <span class="netflix-card__badge">High Value</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play Chatbot live demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="Chatbot details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">95% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>University Chatbot</h3>
+                <p class="card-desc">Intelligent campus search assistant leveraging vector indexes to answer student admission questions, fee structures, and campus routes.</p>
+                <ul class="card-features">
+                  <li>LangChain RAG pipeline with campus PDF data</li>
+                  <li>Real-time chat answers with source citations</li>
+                  <li>Automated support email handoff pipeline</li>
+                </ul>
+                <div class="card-tags">
+                  <span>Python</span><span>LangChain</span><span>NLP</span><span>Vector DB</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card project-card reveal tilt-card" data-tags="python, tensorflow, opencv, computer vision, volume detection, vgg16, mining" data-demo="#" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=600&q=80" alt="Industrial mining loader" />
+                <span class="netflix-card__badge">Research</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play Mining Demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="Mining details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">98% Match</span>
+                  <span class="card-meta__spec">5.1 Audio</span>
+                </div>
+                <h3>Mining Truck Volume Detection</h3>
+                <p class="card-desc">Automated volume detection engine using VGG16 image preprocessing pipelines and least squares math to estimate coal volume in haul trucks.</p>
+                <ul class="card-features">
+                  <li>Industrial camera image filtering &amp; thresholding</li>
+                  <li>Deep bounding-box cargo volume estimation</li>
+                  <li>Production metrics logged to database tables</li>
+                </ul>
+                <div class="card-tags">
+                  <span>Python</span><span>OpenCV</span><span>TensorFlow</span><span>NCL Project</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="netflix-card project-card reveal tilt-card" data-tags="html, css, javascript, yoga, wellness, static site" data-demo="#" data-repo="#">
+              <div class="netflix-card__media">
+                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80" alt="Yoga wellness stretch" />
+                <span class="netflix-card__badge">Static Site</span>
+              </div>
+              <div class="netflix-card__details">
+                <div class="card-controls">
+                  <button class="control-btn play-btn" aria-label="Play Yoga live demo" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                  </button>
+                  <button class="control-btn list-btn" aria-label="Yoga details" type="button">
+                    <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                  </button>
+                </div>
+                <div class="card-meta">
+                  <span class="card-meta__match">92% Match</span>
+                  <span class="card-meta__spec">HD</span>
+                </div>
+                <h3>Yoga Website</h3>
+                <p class="card-desc">A premium responsive portal built for yoga classes, custom diet memberships, scheduling, and fluid visual transitions.</p>
+                <ul class="card-features">
+                  <li>Responsive static grid styling layout</li>
+                  <li>Interactive program schedulers &amp; forms</li>
+                  <li>Custom CSS parallax and scroll variables</li>
+                </ul>
+                <div class="card-tags">
+                  <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                </div>
+              </div>
+            </article>
+          </div>
+          <button class="row__nav row__nav--right" aria-label="Scroll right" type="button">
+            <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="section row" id="skills">
+        <h2 class="row__title">Genres of Expertise: Technical Skills</h2>
+        <div class="row__grid skills-grid">
+          <article class="netflix-card skill-card reveal" data-level="94" data-tags="html, css, javascript, typescript, react, next.js, tailwind, frontend">
+            <div class="skill-header">
+              <h3>Frontend Development</h3>
+              <span class="skill-percentage">94% Match</span>
+            </div>
+            <p>HTML5, CSS3, JavaScript, TypeScript, React.js, Next.js, Tailwind CSS</p>
+            <div class="netflix-progress" aria-label="94% proficiency">
+              <div class="netflix-progress__bar" style="width: 94%"></div>
+            </div>
+          </article>
+
+          <article class="netflix-card skill-card reveal" data-level="86" data-tags="node.js, express.js, rest apis, auth, backend, server">
+            <div class="skill-header">
+              <h3>Backend Development</h3>
+              <span class="skill-percentage">86% Match</span>
+            </div>
+            <p>Node.js, Express.js, REST APIs, Session & Token Authentication Systems</p>
+            <div class="netflix-progress" aria-label="86% proficiency">
+              <div class="netflix-progress__bar" style="width: 86%"></div>
+            </div>
+          </article>
+
+          <article class="netflix-card skill-card reveal" data-level="88" data-tags="c++, python, javascript, java, programming languages">
+            <div class="skill-header">
+              <h3>Programming Languages</h3>
+              <span class="skill-percentage">88% Match</span>
+            </div>
+            <p>C++, Python, JavaScript, Java</p>
+            <div class="netflix-progress" aria-label="88% proficiency">
+              <div class="netflix-progress__bar" style="width: 88%"></div>
+            </div>
+          </article>
+
+          <article class="netflix-card skill-card reveal" data-level="82" data-tags="mongodb, mysql, database, sql, nosql">
+            <div class="skill-header">
+              <h3>Database Technologies</h3>
+              <span class="skill-percentage">82% Match</span>
+            </div>
+            <p>MongoDB (NoSQL), MySQL (Relational SQL)</p>
+            <div class="netflix-progress" aria-label="82% proficiency">
+              <div class="netflix-progress__bar" style="width: 82%"></div>
+            </div>
+          </article>
+
+          <article class="netflix-card skill-card reveal" data-level="84" data-tags="tensorflow, opencv, nlp, langchain, deep learning, computer vision, artificial intelligence">
+            <div class="skill-header">
+              <h3>Artificial Intelligence</h3>
+              <span class="skill-percentage">84% Match</span>
+            </div>
+            <p>TensorFlow, OpenCV, NLP, LangChain, Deep Learning models, Computer Vision</p>
+            <div class="netflix-progress" aria-label="84% proficiency">
+              <div class="netflix-progress__bar" style="width: 84%"></div>
+            </div>
+          </article>
+
+          <article class="netflix-card skill-card reveal" data-level="90" data-tags="git, github, vs code, figma, wordpress, arduino, dev tools">
+            <div class="skill-header">
+              <h3>Tools &amp; Platforms</h3>
+              <span class="skill-percentage">90% Match</span>
+            </div>
+            <p>Git, GitHub, VS Code, Figma, WordPress, Arduino boards</p>
+            <div class="netflix-progress" aria-label="90% proficiency">
+              <div class="netflix-progress__bar" style="width: 90%"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section row" id="experience">
+        <h2 class="row__title">Binge-Worthy Episodes: Work Experience</h2>
+        <div class="episode-list">
+          <article class="episode-card reveal">
+            <div class="episode-card__number">1</div>
+            <div class="episode-card__image">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80" alt="Northern Coalfields IT office" />
+              <div class="episode-card__play">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="episode-card__details">
+              <div class="episode-card__header">
+                <h3>Intern - System / IT Department</h3>
+                <span class="episode-card__duration">24 June 2025 - 24 July 2025</span>
+              </div>
+              <span class="episode-card__sub">Northern Coalfields Limited (NCL)</span>
+              <p>
+                Mining Truck Volume Detection Using VGG16 and Least Squares Algorithm. Researched, built, and validated real-time volume detection tools using camera feeds, VGG16 neural feature pipelines, and least-squares mathematical modeling.
+              </p>
+            </div>
+          </article>
+
+          <article class="episode-card reveal">
+            <div class="episode-card__number">2</div>
+            <div class="episode-card__image">
+              <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=400&q=80" alt="Graduation cap and books" />
+              <div class="episode-card__play">
+                <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="episode-card__details">
+              <div class="episode-card__header">
+                <h3>Bachelor of Engineering in CSE</h3>
+                <span class="episode-card__duration">2023 - 2027 (Expected)</span>
+              </div>
+              <span class="episode-card__sub">Chandigarh University</span>
+              <p>
+                Theoretical and practical CS studies: Data Structures &amp; Algorithms, Artificial Intelligence, Database Systems, Computer Networks, and Operating Systems.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section row" id="certifications">
+        <h2 class="row__title">Critically Acclaimed: Certifications &amp; Achievements</h2>
+        <div class="cert-grid">
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">Apna College</span>
+            <h3>Sigma Web Development</h3>
+            <p>Comprehensive developer program detailing design patterns, full stack server engines, and deployment configurations.</p>
+          </article>
+
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">Udemy Certificate</span>
+            <h3>Motion Design with Figma</h3>
+            <p>Advanced Figma workflow detailing micro-animations, user prototypes, and high-fidelity motion graphics.</p>
+          </article>
+
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">Udemy Certificate</span>
+            <h3>Complete Web Developer</h3>
+            <p>Zero to Mastery developer syllabus mapping DOM architecture, React.js UI, database connections, and hosting.</p>
+          </article>
+
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">DAV School Leadership</span>
+            <h3>Head of Cyber Cell</h3>
+            <p>Administered cybersecurity briefings, organized technical workshops, and coordinated academic coding groups.</p>
+          </article>
+
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">Academic Project</span>
+            <h3>NextMed AI Healthcare</h3>
+            <p>Built medical report PDF parser algorithms using document extraction, LLM APIs, and patient scheduler portals.</p>
+          </article>
+
+          <article class="netflix-card cert-card reveal">
+            <span class="cert-kicker">Competency Benchmark</span>
+            <h3>DSA Problem Solving</h3>
+            <p>Demonstrated strong engineering logic, algorithm optimization, and complex data structure implementation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section row" id="hire-stats">
+        <h2 class="row__title">Why Hire Me: Production Specs</h2>
+        <div class="hire-grid reveal">
+          <span>Full Stack Development Expertise</span>
+          <span>AI &amp; Machine Learning Experience</span>
+          <span>Strong Problem Solving Skills</span>
+          <span>Real Industry Internship Experience</span>
+          <span>Experience Building Real Products</span>
+          <span>Modern UI/UX Development Skills</span>
+          <span>Scalable Application Development</span>
+          <span>Fast Learner &amp; Team Collaborator</span>
+          <span>Focused on Innovation and User Experience</span>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="contact-box glass-panel reveal">
+          <div class="section-heading text-center">
+            <p class="eyebrow">Ready to start?</p>
+            <h2>Contact Raj: Stream Your Product Ideas</h2>
+            <p class="section-lede">Fill out the membership card below to send details directly to my inbox. Response guaranteed.</p>
+          </div>
+          <form class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group floating-label">
+                <input type="text" id="contact-name" name="name" placeholder=" " required autocomplete="name" />
+                <label for="contact-name">Full Name</label>
+              </div>
+              <div class="form-group floating-label">
+                <input type="email" id="contact-email" name="email" placeholder=" " required autocomplete="email" />
+                <label for="contact-email">Email Address</label>
+              </div>
+            </div>
+            <div class="form-group floating-label">
+              <input type="text" id="contact-subject" name="subject" placeholder=" " required />
+              <label for="contact-subject">Subject</label>
+            </div>
+            <div class="form-group floating-label">
+              <textarea id="contact-message" name="message" rows="5" placeholder=" " required></textarea>
+              <label for="contact-message">Message</label>
+            </div>
+            <button class="btn btn--primary btn--large" type="submit">Send Message</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">DEVFLIX</div>
+      <p>Designed &amp; Developed by Raj Shekhar Yadav. All Rights Reserved &copy; 2026.</p>
+      <div class="footer-links">
+        <a href="mailto:rajshekharyadav@example.com">Email</a>
+        <a href="#" aria-label="LinkedIn profile placeholder">LinkedIn</a>
+        <a href="#" aria-label="GitHub profile placeholder">GitHub</a>
+        <a href="#" aria-label="Instagram profile placeholder">Instagram</a>
+      </div>
+    </footer>
+
+    <!-- Netflix Preview Modal Overlay -->
+    <div class="netflix-modal" id="project-modal" aria-hidden="true" role="dialog">
+      <div class="netflix-modal__overlay"></div>
+      <div class="netflix-modal__wrapper">
+        <button class="netflix-modal__close" aria-label="Close details modal" type="button">
+          <svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+        <div class="netflix-modal__hero">
+          <img class="netflix-modal__backdrop" src="" alt="Project Backdrop" />
+          <div class="netflix-modal__hero-overlay"></div>
+          <div class="netflix-modal__hero-content">
+            <h2 class="netflix-modal__title">Project Title</h2>
+            <div class="netflix-modal__actions">
+              <a href="#" class="btn btn--primary modal-play-btn" target="_blank">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+                Play Demo
+              </a>
+              <a href="#" class="btn btn--secondary modal-repo-btn" target="_blank">
+                <svg class="btn-icon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="netflix-modal__body">
+          <div class="netflix-modal__col-left">
+            <div class="netflix-modal__meta">
+              <span class="meta-match">98% Match</span>
+              <span class="meta-year">2026</span>
+              <span class="meta-rating">U/A 18+</span>
+              <span class="meta-spec">HD</span>
+            </div>
+            <p class="netflix-modal__desc">Detailed project description goes here.</p>
+          </div>
+          <div class="netflix-modal__col-right">
+            <div class="netflix-modal__info-item">
+              <span class="info-label">Tech Stack:</span>
+              <span class="info-value modal-tech">Next.js, React, Node.js</span>
+            </div>
+            <div class="netflix-modal__info-item">
+              <span class="info-label">Key Features:</span>
+              <ul class="info-value modal-features">
+                <li>Feature listing item</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="js/script.js" defer></script>
+  </body>
+</html>
