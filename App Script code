@@ -1,0 +1,79 @@
+// 1. Name of the sheet tab in your Google Spreadsheet
+var sheetName = 'Sheet1'; 
+var scriptProp = PropertiesService.getScriptProperties();
+
+/**
+ * Run this function once from the script editor toolbar to authorize 
+ * and bind this script to your active Google Spreadsheet.
+ */
+function initialSetup() {
+  var activeSpreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  scriptProp.setProperty('key', activeSpreadsheet.getId());
+  Logger.log('Setup complete! Connected to Spreadsheet ID: ' + activeSpreadsheet.getId());
+}
+
+// Fallback spelling handler in case your initial setup refers to 'intialSetup'
+function intialSetup() {
+  initialSetup();
+}
+
+/**
+ * Receives the form data from the portfolio website
+ */
+function doPost(e) {
+  var lock = LockService.getScriptLock();
+  lock.tryLock(10000); // Prevent concurrent write collisions
+
+  try {
+    var doc = SpreadsheetApp.openById(scriptProp.getProperty('key'));
+    var sheet = doc.getSheetByName(sheetName);
+
+    var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    var nextRow = sheet.getLastRow() + 1;
+
+    // Load parameters (Support both URL parameters and JSON body payloads)
+    var parameter = {};
+    if (e && e.parameter) {
+      Object.keys(e.parameter).forEach(function(key) {
+        parameter[key] = e.parameter[key];
+      });
+    }
+    
+    if (e && e.postData && e.postData.contents) {
+      try {
+        var json = JSON.parse(e.postData.contents);
+        Object.keys(json).forEach(function(key) {
+          parameter[key] = json[key];
+        });
+      } catch (jsonError) {
+        // Not a JSON payload, proceed with URL parameters
+      }
+    }
+
+    // Map columns dynamically based on row 1 headers
+    var newRow = headers.map(function(header) {
+      var key = String(header).trim().toLowerCase();
+      if (key === 'timestamp') {
+        return new Date();
+      }
+      // Match incoming data keys in a case-insensitive manner for reliability
+      return parameter[key] || parameter[header] || '';
+    });
+
+    sheet.getRange(nextRow, 1, 1, newRow.length).setValues([newRow]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'success', 'row': nextRow }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  catch (error) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ 'result': 'error', 'error': error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  finally {
+    lock.releaseLock();
+  }
+}
