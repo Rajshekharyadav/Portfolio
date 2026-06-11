@@ -322,11 +322,46 @@
         return;
       }
 
-      form.reset();
       if (formStatus) {
-        formStatus.textContent = "Message transmitted successfully! Raj will contact you shortly.";
-        formStatus.style.color = "#46d369";
+        formStatus.textContent = "Transmitting message to the stream...";
+        formStatus.style.color = "var(--text-muted)";
       }
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      if (submitButton) submitButton.disabled = true;
+
+      const obj = {};
+      data.forEach((value, key) => {
+        obj[key] = value;
+      });
+
+      const queryString = new URLSearchParams(obj).toString();
+      const url = `https://script.google.com/macros/s/AKfycbw3VOarJyIOeyLRFE8qfznNKS9BoZEV3fOysyhdIe_BBZ8A5ekOjHhM59wTc7MFOTSlgQ/exec?${queryString}`;
+
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain"
+        },
+        body: JSON.stringify(obj)
+      })
+      .then(() => {
+        if (submitButton) submitButton.disabled = false;
+        form.reset();
+        if (formStatus) {
+          formStatus.textContent = "Message transmitted successfully! Raj will contact you shortly.";
+          formStatus.style.color = "#46d369";
+        }
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        if (submitButton) submitButton.disabled = false;
+        if (formStatus) {
+          formStatus.textContent = "Transmission failed. Please try again or use the social links.";
+          formStatus.style.color = "var(--primary)";
+        }
+      });
     });
   }
 

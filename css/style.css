@@ -1455,6 +1455,86 @@ body.kids-mode .netflix-progress {
   font-weight: 600;
 }
 
+/* Contact Social Buttons */
+.contact-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-btn .social-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.social-btn:hover {
+  color: var(--text);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.social-btn:hover .social-icon {
+  transform: scale(1.1);
+}
+
+/* Specific Social Brand Colors on Hover */
+.social-btn.linkedin:hover {
+  border-color: #0077b5;
+  color: #0077b5;
+  background: rgba(0, 119, 181, 0.05);
+}
+
+.social-btn.github:hover {
+  border-color: #ffffff;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.kids-mode .social-btn.github:hover {
+  border-color: #000000;
+  color: #000000;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.social-btn.instagram:hover {
+  border-color: #e1306c;
+  color: #e1306c;
+  background: rgba(225, 48, 108, 0.05);
+}
+
+.social-btn.whatsapp:hover {
+  border-color: #25d366;
+  color: #25d366;
+  background: rgba(37, 211, 102, 0.05);
+}
+
+.social-btn.leetcode:hover {
+  border-color: #f89f1b;
+  color: #f89f1b;
+  background: rgba(248, 159, 27, 0.05);
+}
+
 /* Footer */
 .site-footer {
   padding: 3rem 6% 2.5rem;
@@ -1760,7 +1840,8 @@ body.kids-mode .netflix-progress {
 @media (max-width: 768px) {
   .billboard {
     min-height: 70vh;
-    padding-top: 90px;
+    align-items: flex-end;
+    padding-top: 120px;
     padding-left: 5%;
     padding-right: 5%;
     padding-bottom: 40px;
