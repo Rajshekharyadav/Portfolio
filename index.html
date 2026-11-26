@@ -349,7 +349,7 @@
     </form>
 
     <div class="raj-footer">
-      POWERED BY RAJ AI • BUILT WITH ⚡
+      POWERED BY RAJ AI • BUILT WITH 💜 & ⚡
     </div>
   </section>
 
@@ -370,6 +370,7 @@
   const input = document.getElementById("raj-ai-input");
   const messages = document.getElementById("raj-ai-messages");
   const send = document.getElementById("raj-ai-send");
+  const chatHistory = [];
 
   if (!panel || !toggle || !form) return;
 
@@ -413,24 +414,32 @@
     messages.scrollTop = messages.scrollHeight;
 
     try {
-      const response = await fetch(API_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: cleanMessage
-        })
-      });
+      
+const response = await fetch(API_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    message: cleanMessage,
+    history: chatHistory.slice(-10)
+  })
+});
 
-      const data = await response.json();
-      typing.remove();
+const data = await response.json();
+typing.remove();
 
-      if (!response.ok || !data.reply) {
-        throw new Error(data.error || "Request failed");
-      }
+if (!response.ok || !data.reply) {
+  throw new Error(data.error || "Request failed");
+}
 
-      addMessage(data.reply, "bot");
+chatHistory.push(
+  { role: "user", content: cleanMessage },
+  { role: "assistant", content: data.reply }
+);
+
+addMessage(data.reply, "bot");
+
 
     } catch (error) {
       typing.remove();
