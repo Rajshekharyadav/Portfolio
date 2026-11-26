@@ -53,6 +53,415 @@
     .blog-intro{max-width:720px;margin:-42px auto 48px;text-align:center;color:#555;line-height:1.8;font-size:18px}.blog-intro a{color:#202020}.blog-toolbar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;align-items:center;margin-bottom:30px}.blog-count{font:13px "DM Mono",monospace;color:#555}.blog-filters{display:flex;flex-wrap:wrap;gap:8px}.blog-filter{padding:9px 14px;border:1px solid #999;border-radius:999px;background:transparent;color:#333;font:12px "DM Mono",monospace;cursor:pointer;transition:.2s}.blog-filter:hover,.blog-filter.active{background:#292929;color:#fff;border-color:#292929}.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.blog-card{display:flex;min-height:260px;flex-direction:column;padding:26px;border:1px solid rgba(70,70,70,.35);border-radius:22px;background:rgba(255,255,255,.22);box-shadow:0 12px 28px rgba(0,0,0,.07);transition:transform .25s,box-shadow .25s}.blog-card:hover{transform:translateY(-7px);box-shadow:0 22px 32px rgba(0,0,0,.14)}.blog-card[hidden]{display:none}.blog-meta{color:#666;font:11px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.08em}.blog-card h3{margin:18px 0 10px;font:30px/1.05 "DM Serif Display",serif}.blog-card p{margin:0;color:#585858;line-height:1.65;font-size:15px}.blog-card a{margin-top:auto;padding-top:20px;color:#222;font:12px "DM Mono",monospace;text-decoration:none}.blog-card a:hover{text-decoration:underline}.blog-cta{margin-top:40px;padding:32px;border-radius:22px;background:#292929;color:#eee;text-align:center}.blog-cta p{margin:8px 0 20px;color:#c9c9c9}.blog-cta a{display:inline-block;padding:12px 20px;border:1px solid #aaa;border-radius:999px;color:#fff;text-decoration:none;font:12px "DM Mono",monospace}@media(max-width:850px){.blog-grid{grid-template-columns:1fr}}@media(max-width:620px){.blog-toolbar{align-items:flex-start;flex-direction:column}.blog-card h3{font-size:26px}}
   </style>
 </head>
+
+<!-- RAJ AI GAMING CHATBOT -->
+<style>
+#raj-ai-widget {
+  --raj-purple: #a855f7;
+  --raj-cyan: #22d3ee;
+  --raj-bg: #090914;
+  font-family: Inter, Arial, sans-serif;
+  z-index: 99999;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+}
+
+#raj-ai-widget * { box-sizing: border-box; }
+
+#raj-ai-toggle {
+  width: 68px;
+  height: 68px;
+  border-radius: 22px;
+  border: 1px solid #c084fc;
+  background: linear-gradient(145deg,#7c3aed,#30105f);
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 0 18px #a855f799, 0 0 45px #7c3aed55;
+  transition: .25s;
+  position: relative;
+}
+
+#raj-ai-toggle:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 25px #c084fc, 0 0 60px #7c3aed88;
+}
+
+#raj-ai-toggle::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #22c55e;
+  border: 2px solid #090914;
+  border-radius: 50%;
+  top: 7px;
+  right: 7px;
+}
+
+#raj-ai-panel {
+  display: none;
+  position: absolute;
+  bottom: 85px;
+  right: 0;
+  width: 365px;
+  max-width: calc(100vw - 30px);
+  height: 520px;
+  max-height: calc(100dvh - 125px);
+  background: rgba(12,12,27,.97);
+  border: 1px solid #9333ea;
+  border-radius: 20px;
+  overflow: hidden;
+  color: white;
+  box-shadow: 0 0 25px #9333ea55, 0 15px 60px #000b;
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+}
+
+#raj-ai-panel.open { display: flex; }
+
+.raj-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(110deg,#251044,#10152c);
+  border-bottom: 1px solid #7026a5;
+}
+
+.raj-avatar {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+  background: linear-gradient(135deg,#9333ea,#312e81);
+  box-shadow: 0 0 15px #a855f799;
+}
+
+.raj-heading { flex: 1; }
+
+.raj-heading strong {
+  display: block;
+  font-size: 15px;
+  letter-spacing: .7px;
+}
+
+.raj-heading small {
+  color: #a5f3fc;
+  font-size: 11px;
+}
+
+.raj-online {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  margin-right: 4px;
+  box-shadow: 0 0 8px #22c55e;
+}
+
+#raj-ai-close {
+  background: transparent;
+  color: #ddd;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.raj-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  scrollbar-width: thin;
+  scrollbar-color: #7135a7 transparent;
+}
+
+.raj-msg {
+  max-width: 88%;
+  padding: 11px 13px;
+  font-size: 13px;
+  line-height: 1.6;
+  border-radius: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.raj-bot {
+  align-self: flex-start;
+  background: #1b1930;
+  border: 1px solid #55317b;
+  border-bottom-left-radius: 3px;
+  color: #eee8ff;
+}
+
+.raj-user {
+  align-self: flex-end;
+  background: linear-gradient(120deg,#7026b5,#4338ca);
+  border: 1px solid #a855f7;
+  border-bottom-right-radius: 3px;
+  color: white;
+}
+
+.raj-typing {
+  color: #c084fc;
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.raj-suggestions {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 0 13px 12px;
+}
+
+.raj-suggestions button {
+  white-space: nowrap;
+  border: 1px solid #7839a9;
+  border-radius: 20px;
+  background: #201432;
+  color: #d8b4fe;
+  padding: 7px 11px;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.raj-suggestions button:hover {
+  background: #512080;
+}
+
+.raj-input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #10101e;
+  border-top: 1px solid #45245f;
+}
+
+#raj-ai-input {
+  min-width: 0;
+  flex: 1;
+  background: #1c1b2d;
+  color: white;
+  border: 1px solid #51416e;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 13px;
+  outline: none;
+}
+
+#raj-ai-input:focus {
+  border-color: #c084fc;
+  box-shadow: 0 0 10px #9333ea55;
+}
+
+#raj-ai-input::placeholder { color: #88839d; }
+
+#raj-ai-send {
+  width: 43px;
+  border: 0;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(135deg,#9333ea,#4f46e5);
+  font-size: 19px;
+  cursor: pointer;
+}
+
+#raj-ai-send:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.raj-footer {
+  text-align: center;
+  color: #77718e;
+  font-size: 9px;
+  padding: 0 8px 9px;
+  background: #10101e;
+}
+
+@media(max-width: 480px) {
+  #raj-ai-widget {
+    right: 14px;
+    bottom: 16px;
+  }
+
+  #raj-ai-panel {
+    position: fixed;
+    width: auto;
+    right: 10px;
+    left: 10px;
+    bottom: 92px;
+    height: min(570px, calc(100dvh - 115px));
+    max-width: none;
+  }
+
+  #raj-ai-toggle {
+    width: 60px;
+    height: 60px;
+  }
+}
+</style>
+
+<div id="raj-ai-widget">
+  <section id="raj-ai-panel" aria-label="Raj AI chat">
+    <div class="raj-header">
+      <div class="raj-avatar">⚡</div>
+      <div class="raj-heading">
+        <strong>RAJ AI <span style="color:#c084fc">/ SYSTEM</span></strong>
+        <small><span class="raj-online"></span>ONLINE • READY TO ASSIST</small>
+      </div>
+      <button id="raj-ai-close" aria-label="Close chat">×</button>
+    </div>
+
+    <div class="raj-chat" id="raj-ai-messages" aria-live="polite">
+      <div class="raj-msg raj-bot">
+        Yo! 👋 Welcome to Raj's digital world.
+
+        I'm Raj AI. Ask me anything about Raj's skills, projects, achievements or experience. ⚡
+      </div>
+    </div>
+
+    <div class="raj-suggestions">
+      <button data-question="Tell me about Raj">About Raj</button>
+      <button data-question="What are Raj's skills?">Skills</button>
+      <button data-question="Tell me about Raj's projects">Projects</button>
+      <button data-question="What are Raj's achievements?">Achievements</button>
+    </div>
+
+    <form class="raj-input-area" id="raj-ai-form">
+      <input
+        id="raj-ai-input"
+        type="text"
+        placeholder="Enter your message..."
+        maxlength="1000"
+        autocomplete="off"
+        aria-label="Your message"
+      />
+      <button id="raj-ai-send" type="submit" aria-label="Send message">➤</button>
+    </form>
+
+    <div class="raj-footer">
+      POWERED BY RAJ AI • BUILT WITH ⚡
+    </div>
+  </section>
+
+  <button id="raj-ai-toggle" aria-label="Open Raj AI chat" title="Chat with Raj AI">
+    ⚡
+  </button>
+</div>
+
+<script>
+(() => {
+  const API_URL =
+    "https://raj-ai-assistant.yadaraj53.workers.dev";
+
+  const panel = document.getElementById("raj-ai-panel");
+  const toggle = document.getElementById("raj-ai-toggle");
+  const close = document.getElementById("raj-ai-close");
+  const form = document.getElementById("raj-ai-form");
+  const input = document.getElementById("raj-ai-input");
+  const messages = document.getElementById("raj-ai-messages");
+  const send = document.getElementById("raj-ai-send");
+
+  if (!panel || !toggle || !form) return;
+
+  function openChat() {
+    panel.classList.add("open");
+    input.focus();
+  }
+
+  function closeChat() {
+    panel.classList.remove("open");
+  }
+
+  toggle.addEventListener("click", () => {
+    panel.classList.contains("open") ? closeChat() : openChat();
+  });
+
+  close.addEventListener("click", closeChat);
+
+  function addMessage(text, type) {
+    const bubble = document.createElement("div");
+    bubble.className = "raj-msg " +
+      (type === "user" ? "raj-user" : "raj-bot");
+    bubble.textContent = text;
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  }
+
+  async function sendMessage(message) {
+    const cleanMessage = message.trim();
+    if (!cleanMessage || send.disabled) return;
+
+    addMessage(cleanMessage, "user");
+    input.value = "";
+    send.disabled = true;
+
+    const typing = document.createElement("div");
+    typing.className = "raj-typing";
+    typing.textContent = "RAJ AI IS THINKING...";
+    messages.appendChild(typing);
+    messages.scrollTop = messages.scrollHeight;
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: cleanMessage
+        })
+      });
+
+      const data = await response.json();
+      typing.remove();
+
+      if (!response.ok || !data.reply) {
+        throw new Error(data.error || "Request failed");
+      }
+
+      addMessage(data.reply, "bot");
+
+    } catch (error) {
+      typing.remove();
+      addMessage(
+        "Connection lost! Please try again in a moment. ⚡",
+        "bot"
+      );
+      console.error("Raj AI:", error);
+
+    } finally {
+      send.disabled = false;
+      input.focus();
+    }
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    sendMessage(input.value);
+  });
+
+  document.querySelectorAll(
+    "#raj-ai-widget .raj-suggestions button"
+  ).forEach(button => {
+    button.addEventListener("click", () => {
+      sendMessage(button.dataset.question);
+    });
+  });
+})();
+</script>
+<!-- END RAJ AI GAMING CHATBOT -->
+
 <body>
   <div class="cursor"></div>
   <nav class="nav"><a class="brand" href="#home"><i>Raj</i>Yadav</a><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#projects">Project</a></li><li><a href="#services">Services</a></li><li><a href="blogs/index.html">Blog</a></li><li><a href="#contact">Contact</a></li></ul><div class="social"><a href="https://github.com/Rajshekharyadav/" target="_blank">GH</a><a href="https://www.linkedin.com/in/iamraj7/" target="_blank">IN</a><a href="https://www.instagram.com/i.am.raj.07/" target="_blank">IG</a></div><button class="menu">MENU</button></nav>
