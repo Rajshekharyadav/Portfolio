@@ -337,14 +337,29 @@
 }
 </style>
 
+<!-- Minimal Ronin chatbot skin -->
+<style>
+  #raj-ai-widget{--ink:#202020;--paper:#f3f3f1;--line:#b8b8b4;font-family:Manrope,Arial,sans-serif}
+  #raj-ai-toggle{width:68px;height:68px;padding:0;overflow:visible;border:2px solid #f5f5f3;border-radius:50%;background:#202020;box-shadow:0 14px 30px rgba(0,0,0,.24);animation:ninjaFloat 3.6s ease-in-out infinite}
+  #raj-ai-toggle:hover{transform:translateY(-6px) scale(1.06);box-shadow:0 20px 38px rgba(0,0,0,.32)}
+  #raj-ai-toggle:before{inset:-7px;border:1px solid #20202066;border-radius:50%;animation:ninjaRing 2.7s ease-out infinite}
+  #raj-ai-toggle:after{width:10px;height:10px;right:1px;top:2px;background:#5fcb78;border:2px solid var(--paper)}
+  .raj-toggle-avatar{width:100%;height:100%;display:block;object-fit:cover;object-position:50% 24%;border-radius:50%;filter:grayscale(1) contrast(1.08)}
+  #raj-ai-panel{width:350px;height:510px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 22px 55px rgba(0,0,0,.22);backdrop-filter:none}
+  .raj-header{padding:14px 16px;background:#202020;border:0}.raj-header:after{display:none}.raj-avatar{width:42px;height:42px;overflow:hidden;border-radius:50%;background:#111;box-shadow:none}.raj-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 24%;filter:grayscale(1) contrast(1.1)}
+  .raj-heading strong{font:15px "DM Serif Display",Georgia,serif;letter-spacing:.04em;color:#f3f3f1}.raj-heading strong span{color:#bebeba!important;font:9px "DM Mono",monospace}.raj-heading small{color:#bcbcb8;font:9px "DM Mono",monospace}.raj-online{width:6px;height:6px;background:#77d18d;box-shadow:none}.raj-subtitle{display:none}#raj-ai-close{color:#ccc;font-size:23px}.raj-chat{padding:16px;gap:10px;background:#e8e8e5;scrollbar-color:#777 transparent}.raj-msg{max-width:87%;padding:11px 13px;border-radius:14px;font-size:12px;line-height:1.55}.raj-bot{background:#fff;border:1px solid #d1d1cd;border-left:0;border-bottom-left-radius:3px;color:#303030}.raj-user{background:#202020;border:0;border-bottom-right-radius:3px;color:#fff}.raj-typing{color:#555}.raj-suggestions{gap:6px;padding:9px 12px;background:#e8e8e5;border-top:1px solid #d0d0cc}.raj-suggestions button{padding:7px 10px;border:1px solid #aaa;border-radius:99px;background:transparent;color:#333;font:10px "DM Mono",monospace}.raj-suggestions button:hover{background:#202020;border-color:#202020;color:#fff}.raj-input-area{padding:11px;background:#f3f3f1;border-top:1px solid #c8c8c4}#raj-ai-input{background:#fff;color:#202020;border:1px solid #aaa;border-radius:99px;padding:11px 13px;font-size:12px}#raj-ai-input:focus{border-color:#202020;box-shadow:none}#raj-ai-send{width:40px;border-radius:50%;background:#202020;font-size:15px}.raj-footer{padding:0 8px 9px;background:#f3f3f1;color:#777;font:8px "DM Mono",monospace;letter-spacing:.08em}
+  @keyframes ninjaFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-7px) rotate(-2deg)}}@keyframes ninjaRing{0%{transform:scale(.86);opacity:.75}75%,100%{transform:scale(1.38);opacity:0}}
+  @media(max-width:480px){#raj-ai-panel{height:min(520px,calc(100dvh - 105px))}}
+</style>
+
 <div id="raj-ai-widget">
   <section id="raj-ai-panel" aria-label="Raj AI chat">
 
     <div class="raj-header">
-      <div class="raj-avatar">⚡</div>
+      <div class="raj-avatar"><img src="images/raj-ai-ronin-avatar.png" alt="Raj AI Ronin"></div>
       <div class="raj-heading">
-        <strong>RAJ AI <span style="color:#ff9b58">/ NINJA MODE</span></strong>
-        <small><span class="raj-online"></span>ONLINE • READY FOR ACTION</small>
+        <strong>RAJ AI <span>/ NINJA MODE</span></strong>
+        <small><span class="raj-online"></span>ONLINE · READY TO HELP</small>
       </div>
       <button id="raj-ai-close" aria-label="Close chat">×</button>
     </div>
@@ -363,12 +378,13 @@ Ask me about Raj's skills, projects, achievements, experience or appointment boo
 
     <div class="raj-suggestions">
       <button data-question="Tell me about Raj">About Raj</button>
-      <button data-question="What are Raj's skills?">Skills</button>
-      <button data-question="Tell me about Raj's projects">Projects</button>
-      <button data-question="What are Raj's achievements?">Achievements</button>
       <button type="button" id="raj-book-btn">
   ⚡ Book a Meeting
 </button>
+      <button data-question="What are Raj's skills?">Skills</button>
+      <button data-question="Tell me about Raj's projects">Projects</button>
+      <button data-question="What are Raj's achievements?">Achievements</button>
+
     </div>
 
     <form class="raj-input-area" id="raj-ai-form">
@@ -384,7 +400,7 @@ Ask me about Raj's skills, projects, achievements, experience or appointment boo
     </div>
   </section>
 
-  <button id="raj-ai-toggle" aria-label="Open Raj AI chat" title="Chat with Raj AI">⚡</button>
+  <button id="raj-ai-toggle" aria-label="Open Raj AI chat" title="Chat with Raj AI"><img class="raj-toggle-avatar" src="images/raj-ai-ronin-avatar.png" alt=""></button>
 </div>
 
 <script>
