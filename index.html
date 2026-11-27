@@ -54,279 +54,311 @@
   </style>
 </head>
 
-<!-- RAJ AI GAMING CHATBOT -->
+<!-- RAJ AI - CYBER NINJA EDITION -->
 <style>
 #raj-ai-widget {
-  --raj-purple: #a855f7;
-  --raj-cyan: #22d3ee;
-  --raj-bg: #090914;
-  font-family: Inter, Arial, sans-serif;
-  z-index: 99999;
+  --orange: #ff7628;
+  --gold: #ffb347;
+  --purple: #a855f7;
+  --bg: #09090d;
   position: fixed;
-  bottom: 25px;
   right: 25px;
+  bottom: 25px;
+  z-index: 99999;
+  font-family: Inter, Arial, sans-serif;
 }
-
 #raj-ai-widget * { box-sizing: border-box; }
 
 #raj-ai-toggle {
-  width: 68px;
-  height: 68px;
+  width: 66px;
+  height: 66px;
   border-radius: 22px;
-  border: 1px solid #c084fc;
-  background: linear-gradient(145deg,#7c3aed,#30105f);
+  border: 1px solid #ff9b50;
+  background: linear-gradient(145deg,#ff8a32,#a82b12 75%,#351020);
   color: white;
-  font-size: 28px;
+  font-size: 29px;
   cursor: pointer;
-  box-shadow: 0 0 18px #a855f799, 0 0 45px #7c3aed55;
-  transition: .25s;
+  box-shadow: 0 0 22px #ff762866, 0 0 55px #ff762833;
+  transition: .3s;
   position: relative;
 }
-
 #raj-ai-toggle:hover {
-  transform: translateY(-5px) scale(1.05);
-  box-shadow: 0 0 25px #c084fc, 0 0 60px #7c3aed88;
+  transform: translateY(-5px) rotate(-5deg);
+  box-shadow: 0 0 30px #ff9b50, 0 0 65px #ff762866;
 }
-
-#raj-ai-toggle::after {
+#raj-ai-toggle:before {
   content: "";
   position: absolute;
-  width: 12px;
-  height: 12px;
-  background: #22c55e;
-  border: 2px solid #090914;
+  inset: -6px;
+  border: 1px solid #ff762888;
+  border-radius: 27px;
+  animation: chakra 3s linear infinite;
+}
+#raj-ai-toggle:after {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  right: 5px;
+  top: 5px;
   border-radius: 50%;
-  top: 7px;
-  right: 7px;
+  background: #4ade80;
+  border: 2px solid #09090d;
+}
+@keyframes chakra {
+  0% { transform: rotate(0deg) scale(1); opacity:.8; }
+  50% { transform: rotate(180deg) scale(1.08); opacity:.3; }
+  100% { transform: rotate(360deg) scale(1); opacity:.8; }
 }
 
 #raj-ai-panel {
   display: none;
   position: absolute;
-  bottom: 85px;
   right: 0;
-  width: 365px;
-  max-width: calc(100vw - 30px);
-  height: 520px;
-  max-height: calc(100dvh - 125px);
-  background: rgba(12,12,27,.97);
-  border: 1px solid #9333ea;
-  border-radius: 20px;
-  overflow: hidden;
-  color: white;
-  box-shadow: 0 0 25px #9333ea55, 0 15px 60px #000b;
-  backdrop-filter: blur(20px);
+  bottom: 85px;
+  width: 380px;
+  height: 550px;
+  max-width: calc(100vw - 28px);
+  max-height: calc(100dvh - 120px);
   flex-direction: column;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(ellipse at top right,#5a1d1d44,transparent 48%),
+    linear-gradient(145deg,#111018,#09090e 75%);
+  border: 1px solid #ff762877;
+  border-radius: 21px;
+  box-shadow: 0 0 35px #ff762833, 0 20px 80px #000c;
+  backdrop-filter: blur(20px);
+}
+#raj-ai-panel.open {
+  display: flex;
+  animation: panelIn .3s ease;
+}
+@keyframes panelIn {
+  from { opacity:0; transform:translateY(15px) scale(.97); }
+  to { opacity:1; transform:translateY(0) scale(1); }
 }
 
-#raj-ai-panel.open { display: flex; }
-
 .raj-header {
-  padding: 16px;
+  padding: 17px;
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(110deg,#251044,#10152c);
-  border-bottom: 1px solid #7026a5;
+  background: linear-gradient(110deg,#32130f,#17111b);
+  border-bottom: 1px solid #ff762855;
+  position: relative;
 }
-
+.raj-header:after {
+  content:"";
+  height:2px;
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:35%;
+  background:linear-gradient(90deg,#ff7628,transparent);
+}
 .raj-avatar {
-  width: 43px;
-  height: 43px;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  font-size: 25px;
-  background: linear-gradient(135deg,#9333ea,#312e81);
-  box-shadow: 0 0 15px #a855f799;
+  width: 46px;
+  height: 46px;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+  border-radius:15px;
+  font-size:25px;
+  background:linear-gradient(145deg,#ff9a42,#9d2b19);
+  box-shadow:0 0 18px #ff762855;
 }
-
-.raj-heading { flex: 1; }
-
+.raj-heading { flex:1; }
 .raj-heading strong {
-  display: block;
-  font-size: 15px;
-  letter-spacing: .7px;
+  display:block;
+  font-size:14px;
+  letter-spacing:1px;
 }
-
 .raj-heading small {
-  color: #a5f3fc;
-  font-size: 11px;
+  color:#ffb77e;
+  font-size:10px;
+  letter-spacing:.7px;
 }
-
 .raj-online {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: #22c55e;
-  border-radius: 50%;
-  margin-right: 4px;
-  box-shadow: 0 0 8px #22c55e;
+  display:inline-block;
+  width:7px;
+  height:7px;
+  background:#4ade80;
+  border-radius:50%;
+  margin-right:5px;
+  box-shadow:0 0 8px #4ade80;
 }
-
 #raj-ai-close {
-  background: transparent;
-  color: #ddd;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
+  border:0;
+  background:transparent;
+  color:#aaa;
+  font-size:24px;
+  cursor:pointer;
+}
+#raj-ai-close:hover { color:white; }
+
+.raj-subtitle {
+  padding:9px 16px;
+  color:#a9a2b1;
+  font-size:10px;
+  letter-spacing:1.2px;
+  border-bottom:1px solid #ffffff0d;
 }
 
 .raj-chat {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-  scrollbar-width: thin;
-  scrollbar-color: #7135a7 transparent;
+  flex:1;
+  overflow-y:auto;
+  padding:17px 14px;
+  display:flex;
+  flex-direction:column;
+  gap:13px;
+  scrollbar-width:thin;
+  scrollbar-color:#9c492d transparent;
 }
-
 .raj-msg {
-  max-width: 88%;
-  padding: 11px 13px;
-  font-size: 13px;
-  line-height: 1.6;
-  border-radius: 13px;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+  max-width:88%;
+  padding:12px 14px;
+  font-size:13px;
+  line-height:1.65;
+  border-radius:14px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  animation:messageIn .25s ease;
 }
-
+@keyframes messageIn {
+  from { opacity:0; transform:translateY(7px); }
+  to { opacity:1; transform:translateY(0); }
+}
 .raj-bot {
-  align-self: flex-start;
-  background: #1b1930;
-  border: 1px solid #55317b;
-  border-bottom-left-radius: 3px;
-  color: #eee8ff;
+  align-self:flex-start;
+  background:#1b1922;
+  border:1px solid #ffffff17;
+  border-left:2px solid #ff7628;
+  border-bottom-left-radius:4px;
+  color:#eeeaf1;
 }
-
 .raj-user {
-  align-self: flex-end;
-  background: linear-gradient(120deg,#7026b5,#4338ca);
-  border: 1px solid #a855f7;
-  border-bottom-right-radius: 3px;
-  color: white;
+  align-self:flex-end;
+  background:linear-gradient(120deg,#a83d19,#67241c);
+  border:1px solid #ff8a4566;
+  border-bottom-right-radius:4px;
+  color:white;
 }
-
 .raj-typing {
-  color: #c084fc;
-  font-size: 12px;
-  padding: 5px 10px;
+  color:#ffad72;
+  font-size:11px;
+  padding:5px 10px;
+  letter-spacing:1px;
 }
 
 .raj-suggestions {
-  display: flex;
-  gap: 7px;
-  overflow-x: auto;
-  padding: 0 13px 12px;
+  display:flex;
+  gap:7px;
+  padding:10px 12px;
+  overflow-x:auto;
+  border-top:1px solid #ffffff0d;
+  scrollbar-width:none;
 }
-
 .raj-suggestions button {
-  white-space: nowrap;
-  border: 1px solid #7839a9;
-  border-radius: 20px;
-  background: #201432;
-  color: #d8b4fe;
-  padding: 7px 11px;
-  font-size: 11px;
-  cursor: pointer;
+  flex-shrink:0;
+  padding:8px 12px;
+  border:1px solid #ff762855;
+  border-radius:20px;
+  background:#211716;
+  color:#ffc095;
+  font-size:10px;
+  cursor:pointer;
+  transition:.2s;
 }
-
 .raj-suggestions button:hover {
-  background: #512080;
+  background:#6e2b1c;
+  border-color:#ff9a50;
+  color:white;
 }
 
 .raj-input-area {
-  display: flex;
-  gap: 8px;
-  padding: 12px;
-  background: #10101e;
-  border-top: 1px solid #45245f;
+  display:flex;
+  gap:9px;
+  padding:12px;
+  background:#100f16;
+  border-top:1px solid #ff762833;
 }
-
 #raj-ai-input {
-  min-width: 0;
-  flex: 1;
-  background: #1c1b2d;
-  color: white;
-  border: 1px solid #51416e;
-  border-radius: 12px;
-  padding: 12px;
-  font-size: 13px;
-  outline: none;
+  min-width:0;
+  flex:1;
+  background:#1b1921;
+  color:white;
+  border:1px solid #49404b;
+  border-radius:12px;
+  padding:12px;
+  font-size:13px;
+  outline:none;
 }
-
 #raj-ai-input:focus {
-  border-color: #c084fc;
-  box-shadow: 0 0 10px #9333ea55;
+  border-color:#ff8a45;
+  box-shadow:0 0 12px #ff762833;
 }
-
-#raj-ai-input::placeholder { color: #88839d; }
-
+#raj-ai-input::placeholder { color:#88818d; }
 #raj-ai-send {
-  width: 43px;
-  border: 0;
-  border-radius: 12px;
-  color: white;
-  background: linear-gradient(135deg,#9333ea,#4f46e5);
-  font-size: 19px;
-  cursor: pointer;
+  width:44px;
+  border:0;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(135deg,#ff8736,#a52d1b);
+  font-size:19px;
+  cursor:pointer;
 }
-
 #raj-ai-send:disabled {
-  opacity: .5;
-  cursor: not-allowed;
+  opacity:.5;
+  cursor:not-allowed;
 }
-
 .raj-footer {
-  text-align: center;
-  color: #77718e;
-  font-size: 9px;
-  padding: 0 8px 9px;
-  background: #10101e;
+  text-align:center;
+  padding:0 8px 10px;
+  background:#100f16;
+  color:#817984;
+  font-size:9px;
+  letter-spacing:1px;
 }
 
-@media(max-width: 480px) {
-  #raj-ai-widget {
-    right: 14px;
-    bottom: 16px;
-  }
-
+@media(max-width:480px) {
+  #raj-ai-widget { right:15px; bottom:17px; }
   #raj-ai-panel {
-    position: fixed;
-    width: auto;
-    right: 10px;
-    left: 10px;
-    bottom: 92px;
-    height: min(570px, calc(100dvh - 115px));
-    max-width: none;
+    position:fixed;
+    left:10px;
+    right:10px;
+    bottom:88px;
+    width:auto;
+    max-width:none;
+    height:min(570px,calc(100dvh - 110px));
   }
-
-  #raj-ai-toggle {
-    width: 60px;
-    height: 60px;
-  }
+  #raj-ai-toggle { width:60px; height:60px; }
 }
 </style>
 
 <div id="raj-ai-widget">
   <section id="raj-ai-panel" aria-label="Raj AI chat">
+
     <div class="raj-header">
       <div class="raj-avatar">⚡</div>
       <div class="raj-heading">
-        <strong>RAJ AI <span style="color:#c084fc">/ SYSTEM</span></strong>
-        <small><span class="raj-online"></span>ONLINE • READY TO ASSIST</small>
+        <strong>RAJ AI <span style="color:#ff9b58">/ NINJA MODE</span></strong>
+        <small><span class="raj-online"></span>ONLINE • READY FOR ACTION</small>
       </div>
       <button id="raj-ai-close" aria-label="Close chat">×</button>
     </div>
 
-    <div class="raj-chat" id="raj-ai-messages" aria-live="polite">
-      <div class="raj-msg raj-bot">
-        Yo! 👋 Welcome to Raj's digital world.
+    <div class="raj-subtitle">
+      SYSTEM ACTIVE // RAJ'S DIGITAL ASSISTANT
+    </div>
 
-        I'm Raj AI. Ask me anything about Raj's skills, projects, achievements or experience. ⚡
-      </div>
+    <div class="raj-chat" id="raj-ai-messages" aria-live="polite">
+      <div class="raj-msg raj-bot">Yo! 👋 Welcome to Raj's digital world.
+
+I'm Raj AI — your personal ninja assistant. ⚡
+
+Ask me about Raj's skills, projects, achievements, experience or appointment booking!</div>
     </div>
 
     <div class="raj-suggestions">
@@ -337,31 +369,24 @@
     </div>
 
     <form class="raj-input-area" id="raj-ai-form">
-      <input
-        id="raj-ai-input"
-        type="text"
-        placeholder="Enter your message..."
-        maxlength="1000"
-        autocomplete="off"
-        aria-label="Your message"
-      />
-      <button id="raj-ai-send" type="submit" aria-label="Send message">➤</button>
+      <input id="raj-ai-input" type="text"
+        placeholder="Ask your ninja assistant..."
+        maxlength="1000" autocomplete="off"
+        aria-label="Your message">
+      <button id="raj-ai-send" type="submit" aria-label="Send">➤</button>
     </form>
 
     <div class="raj-footer">
-      POWERED BY RAJ AI • BUILT WITH 💜 & ⚡
+      POWERED BY RAJ AI • CHAKRA SYSTEM ⚡
     </div>
   </section>
 
-  <button id="raj-ai-toggle" aria-label="Open Raj AI chat" title="Chat with Raj AI">
-    ⚡
-  </button>
+  <button id="raj-ai-toggle" aria-label="Open Raj AI chat" title="Chat with Raj AI">⚡</button>
 </div>
 
 <script>
 (() => {
-  const API_URL =
-    "https://raj-ai-assistant.yadaraj53.workers.dev";
+  const API_URL = "https://raj-ai-assistant.yadaraj53.workers.dev";
 
   const panel = document.getElementById("raj-ai-panel");
   const toggle = document.getElementById("raj-ai-toggle");
@@ -378,7 +403,6 @@
     panel.classList.add("open");
     input.focus();
   }
-
   function closeChat() {
     panel.classList.remove("open");
   }
@@ -386,7 +410,6 @@
   toggle.addEventListener("click", () => {
     panel.classList.contains("open") ? closeChat() : openChat();
   });
-
   close.addEventListener("click", closeChat);
 
   function addMessage(text, type) {
@@ -409,53 +432,45 @@
 
     const typing = document.createElement("div");
     typing.className = "raj-typing";
-    typing.textContent = "RAJ AI IS THINKING...";
+    typing.textContent = "⚡ RAJ AI IS THINKING...";
     messages.appendChild(typing);
     messages.scrollTop = messages.scrollHeight;
 
     try {
-      
-const response = await fetch(API_URL, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    message: cleanMessage,
-    history: chatHistory.slice(-10)
-  })
-});
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: cleanMessage,
+          history: chatHistory.slice(-10)
+        })
+      });
 
-const data = await response.json();
-typing.remove();
+      const data = await response.json();
+      typing.remove();
 
-if (!response.ok || !data.reply) {
-  throw new Error(data.error || "Request failed");
-}
+      if (!response.ok || !data.reply) {
+        throw new Error(data.error || "Request failed");
+      }
 
-chatHistory.push(
-  { role: "user", content: cleanMessage },
-  { role: "assistant", content: data.reply }
-);
+      chatHistory.push(
+        { role: "user", content: cleanMessage },
+        { role: "assistant", content: data.reply }
+      );
 
-addMessage(data.reply, "bot");
-
+      addMessage(data.reply, "bot");
 
     } catch (error) {
       typing.remove();
-      addMessage(
-        "Connection lost! Please try again in a moment. ⚡",
-        "bot"
-      );
+      addMessage("Connection lost! Try again in a moment. ⚡", "bot");
       console.error("Raj AI:", error);
-
     } finally {
       send.disabled = false;
       input.focus();
     }
   }
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", event => {
     event.preventDefault();
     sendMessage(input.value);
   });
@@ -469,7 +484,7 @@ addMessage(data.reply, "bot");
   });
 })();
 </script>
-<!-- END RAJ AI GAMING CHATBOT -->
+<!-- END RAJ AI NINJA EDITION -->
 
 <body>
   <div class="cursor"></div>
