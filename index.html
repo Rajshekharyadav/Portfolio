@@ -366,6 +366,9 @@ Ask me about Raj's skills, projects, achievements, experience or appointment boo
       <button data-question="What are Raj's skills?">Skills</button>
       <button data-question="Tell me about Raj's projects">Projects</button>
       <button data-question="What are Raj's achievements?">Achievements</button>
+      <button type="button" id="raj-book-btn">
+  ⚡ Book a Meeting
+</button>
     </div>
 
     <form class="raj-input-area" id="raj-ai-form">
@@ -482,6 +485,195 @@ Ask me about Raj's skills, projects, achievements, experience or appointment boo
       sendMessage(button.dataset.question);
     });
   });
+
+// RAJ AI APPOINTMENT BOOKING
+
+const bookingButton = document.getElementById("raj-book-btn");
+
+if (bookingButton) {
+  bookingButton.addEventListener("click", showBookingForm);
+}
+
+function showBookingForm() {
+  const card = document.createElement("div");
+  card.className = "raj-msg raj-bot";
+
+  const heading = document.createElement("strong");
+  heading.textContent = "⚡ Book a Meeting";
+
+  const description = document.createElement("p");
+  description.textContent = "Choose your preferred date.";
+
+  const dateInput = document.createElement("input");
+  dateInput.type = "date";
+  dateInput.min = new Date().toLocaleDateString("en-CA");
+  dateInput.style.cssText =
+    "width:100%;padding:10px;border-radius:9px;background:#211923;color:white;border:1px solid #ff7628;margin:8px 0;";
+
+  const checkButton = document.createElement("button");
+  checkButton.type = "button";
+  checkButton.textContent = "Check Available Slots";
+  checkButton.style.cssText =
+    "padding:10px 14px;border:0;border-radius:9px;background:#c34c20;color:white;cursor:pointer;";
+
+  const slotsArea = document.createElement("div");
+  slotsArea.style.cssText = "margin-top:12px;";
+
+  card.append(heading, description, dateInput, checkButton, slotsArea);
+  messages.appendChild(card);
+  messages.scrollTop = messages.scrollHeight;
+
+  checkButton.addEventListener("click", async () => {
+    if (!dateInput.value) {
+      alert("Please select a date.");
+      return;
+    }
+
+    checkButton.disabled = true;
+    checkButton.textContent = "Checking...";
+
+    try {
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "availability",
+          date: dateInput.value
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Unable to check availability");
+      }
+
+      slotsArea.replaceChildren();
+
+      if (!data.slots || !data.slots.length) {
+        slotsArea.textContent = "No available slots. Please select another date.";
+        return;
+      }
+
+      const label = document.createElement("p");
+      label.textContent = "Available time slots:";
+      slotsArea.appendChild(label);
+
+      data.slots.forEach(time => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.textContent = time;
+        button.style.cssText =
+          "margin:4px;padding:8px 12px;border:1px solid #ff7628;border-radius:9px;background:#211923;color:white;cursor:pointer;";
+
+        button.addEventListener("click", () => {
+          showBookingDetails(dateInput.value, time);
+        });
+
+        slotsArea.appendChild(button);
+      });
+
+    } catch (error) {
+      slotsArea.textContent = error.message;
+      console.error("Booking availability:", error);
+    } finally {
+      checkButton.disabled = false;
+      checkButton.textContent = "Check Available Slots";
+    }
+  });
+}
+
+function showBookingDetails(date, time) {
+  const card = document.createElement("div");
+  card.className = "raj-msg raj-bot";
+
+  const heading = document.createElement("strong");
+  heading.textContent = "Confirm Your Appointment";
+
+  const selected = document.createElement("p");
+  selected.textContent = `Date: ${date} | Time: ${time}`;
+
+  const name = document.createElement("input");
+  name.placeholder = "Your name";
+
+  const email = document.createElement("input");
+  email.placeholder = "Your email";
+  email.type = "email";
+
+  const purpose = document.createElement("textarea");
+  purpose.placeholder = "Meeting purpose";
+
+  [name, email, purpose].forEach(el => {
+    el.style.cssText =
+      "display:block;width:100%;padding:10px;margin:8px 0;border-radius:9px;background:#211923;color:white;border:1px solid #69412f;";
+  });
+
+  const confirm = document.createElement("button");
+  confirm.type = "button";
+  confirm.textContent = "Confirm Booking ⚡";
+  confirm.style.cssText =
+    "padding:11px 14px;border:0;border-radius:9px;background:#c34c20;color:white;cursor:pointer;";
+
+  const result = document.createElement("p");
+
+  card.append(heading, selected, name, email, purpose, confirm, result);
+  messages.appendChild(card);
+  messages.scrollTop = messages.scrollHeight;
+
+  confirm.addEventListener("click", async () => {
+    if (!name.value.trim() || !email.value.trim() ||
+        !purpose.value.trim()) {
+      result.textContent = "Please complete all fields.";
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+      result.textContent = "Please enter a valid email.";
+      return;
+    }
+
+    confirm.disabled = true;
+    confirm.textContent = "Booking...";
+
+    try {
+      const start = `${date}T${time}:00+05:30`;
+
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "book",
+          name: name.value.trim(),
+          email: email.value.trim(),
+          purpose: purpose.value.trim(),
+          start
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Booking failed");
+      }
+
+      result.textContent =
+        "✅ " + (data.message || "Appointment booked successfully!");
+
+      confirm.textContent = "Booking Confirmed";
+      addMessage(
+        "Your appointment request has been booked successfully! ⚡",
+        "bot"
+      );
+
+    } catch (error) {
+      result.textContent = error.message;
+      confirm.disabled = false;
+      confirm.textContent = "Try Again";
+      console.error("Booking error:", error);
+    }
+  });
+}
+
 })();
 </script>
 <!-- END RAJ AI NINJA EDITION -->
